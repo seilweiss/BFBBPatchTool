@@ -178,10 +178,15 @@ namespace BFBBPatchTool
                 HipFile backup = new HipFile(file.path);
                 HipSection[] hip = HipFileToHipArray(path);
 
-                List<Section_AHDR> ahdrList = Util.HipArrayToAHDRList(hip);
-                List<Section_LHDR> lhdrList = Util.HipArrayToLHDRList(hip);
+                Section_HIPA hipa = (Section_HIPA)hip[0];
+                Section_PACK pack = (Section_PACK)hip[1];
+                Section_DICT dict = (Section_DICT)hip[2];
+                Section_STRM strm = (Section_STRM)hip[3];
 
-                Dictionary<uint, Section_AHDR> ahdrDict = Util.HipArrayToAHDRDict(hip);
+                List<Section_AHDR> ahdrList = dict.ATOC.AHDRList;
+                List<Section_LHDR> lhdrList = dict.LTOC.LHDRList;
+
+                Dictionary<uint, Section_AHDR> ahdrDict = ahdrList.ToDictionary(s => s.assetID);
 
                 PrintFile(PatchType.MODIFY, file.path);
 
@@ -189,6 +194,8 @@ namespace BFBBPatchTool
                 {
                     Section_ADBG adbg = new Section_ADBG(asset.alignment, asset.name, asset.filename, asset.checksum);
                     Section_AHDR ahdr = new Section_AHDR(asset.id, new string(asset.type), (AHDRFlags)asset.flags, adbg);
+
+                    ahdr.data = asset.data;
 
                     DeletedAsset backupAsset = new DeletedAsset(asset);
                     backup.deletedAssets.Add(backupAsset);
@@ -236,10 +243,10 @@ namespace BFBBPatchTool
 
                     PrintAsset(PatchType.DELETE, asset.name);
                 }
-
-                Section_PACK pack = Util.HipArrayToPACK(hip);
+                
                 pack.PCNT.AHDRCount = ahdrList.Count;
 
+                hip = SetupStream(ref hipa, ref pack, ref dict, ref strm);
                 File.WriteAllBytes(path, HipArrayToFile(hip));
 
                 uninstall.hipFiles.Add(backup);
