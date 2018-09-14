@@ -71,12 +71,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HipHopFile\HipHopFile.csproj">
-      <Project>{f68908e6-6947-477e-8a88-3130be2fdb06}</Project>
-      <Name>HipHopFile</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -87,6 +81,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HipHopTool\HipHopFile\HipHopFile.csproj">
+      <Project>{f68908e6-6947-477e-8a88-3130be2fdb06}</Project>
+      <Name>HipHopFile</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

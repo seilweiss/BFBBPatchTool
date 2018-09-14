@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BFBBPatchTool", "BFBBPatchTool\BFBBPatchTool.csproj", "{D0918776-5EE8-40FA-84FC-BCC224692651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipHopFile", "HipHopFile\HipHopFile.csproj", "{F68908E6-6947-477E-8A88-3130BE2FDB06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipHopFile", "HipHopTool\HipHopFile\HipHopFile.csproj", "{F68908E6-6947-477E-8A88-3130BE2FDB06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
