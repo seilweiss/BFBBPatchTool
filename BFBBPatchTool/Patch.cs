@@ -371,7 +371,7 @@ namespace BFBBPatchTool
             return Directory.EnumerateFiles(root, "*.ini")
                 .Union(Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories)
                     .Where(s => Util.FileIsHip(s)))
-                .Select(s => s.Substring(root.Length))
+                .Select(s => s.Substring(root.Length).ToLower())
                 .ToList();
         }
 
